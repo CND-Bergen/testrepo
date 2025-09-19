@@ -1,5 +1,8 @@
 name: Just a workflow
 
+permissions:
+  contents: read
+
 on:
   push:
     branches:
@@ -15,14 +18,16 @@ concurrency:
 
 jobs:
   do-stuff:
+    name: what's in a name?
     runs-on: ubuntu-latest
     permissions:
       contents: read
     steps:
-      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # ratchet:actions/checkout@v4
+      - name: checkout
+        uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # ratchet:actions/checkout@v4
         with:
           persist-credentials: false
       - name: do the thing
         id: do-thing
-        run: |
+        run: |-
           echo "Yolo all the way"
